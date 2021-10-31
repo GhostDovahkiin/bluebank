@@ -5,12 +5,12 @@
 
 <!-- VARS -->
 
-[license-badge]: https://img.shields.io/github/license/GhostDovahkiin/LibrAPI_Pedro?color=%238257E5
-[star-badge]: https://img.shields.io/github/stars/GhostDovahkiin/LibrAPI_Pedro?color=8257E5&logo=github
-[last-commit-badge]: https://img.shields.io/github/last-commit/GhostDovahkiin/LibrAPI_Pedro?color=%238257E5
+[license-badge]: https://img.shields.io/github/license/GhostDovahkiin/bluebank?color=%238257E5
+[star-badge]: https://img.shields.io/github/stars/GhostDovahkiin/bluebank?color=8257E5&logo=github
+[last-commit-badge]: https://img.shields.io/github/last-commit/GhostDovahkiin/bluebank?color=%238257E5
 [codacy-badge]: https://app.codacy.com/project/badge/Grade/b2d32fa731984f3e9c3eaa814861c9db
-[license-url]: https://github.com/GhostDovahkiin/LibrAPI_Pedro/blob/master/LICENSE
-[issues-url]: https://github.com/GhostDovahkiin/LibrAPI_Pedro/issues/
+[license-url]: https://github.com/GhostDovahkiin/bluebank/blob/master/LICENSE
+[issues-url]: https://github.com/GhostDovahkiin/bluebank/issues/
 [java-url]: https://nodejs.org/en
 [vscode-url]: https://code.visualstudio.com/
 [spring-url]: https://spring.io/
@@ -20,13 +20,13 @@
 
 <div align="center">
 
-<img width="500px" align="center" src="https://raw.githubusercontent.com/ayty-org/LibrAPI_Pedro/main/assets/Librapi.gif?token=AF2NW5AMVIJU2P5O7CZNND3AB5VXK"></img>
+<img width="500px" align="center" src="https://raw.githubusercontent.com/GhostDovahkiin/bluebank/main/assets/BlueBank.gif"></img>
 
 </div>
 
 <br>
 <p align="center">
-    Library management system API using Spring Framework 🚀
+    Bank Transactions management with SpringBoot 🚀
 </p>
 
 <div align="center">  
@@ -52,15 +52,15 @@
 
 ```ps
 # Clone the repository using git
-$ git clone https://github.com/GhostDovahkiin/LibrAPI_Pedro.git
+$ git clone https://github.com/GhostDovahkiin/bluebank.git
 
 # Access the project folder
-$ cd LibrAPI_Pedro
+$ cd bluebank
 ```
 
 #### Requirements
 
-- [Java 1.8][java-url]
+- [Java 11][java-url]
 - [VsCode][vscode-url] or [SDT/IntelliJ/Spring][spring-url]
 
 ### Issues 🐛
@@ -78,11 +78,11 @@ If you want do help with the code follow the steps bellow
 ```ps
 # Fork using GitHub official command line
 # If you don't have the GitHub CLI, use the web site to do that.
-$ gh repo fork GhostDovahkiin/LibrAPI_Pedro
+$ gh repo fork GhostDovahkiin/bluebank
 
 # Clone your fork
 $ git clone {your-fork-url}
-$ cd LibrAPI_Pedro
+$ cd bluebank
 
 # Create a branch with your feature
 $ git checkout -b {branch-name}
