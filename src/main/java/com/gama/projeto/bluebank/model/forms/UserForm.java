@@ -8,10 +8,12 @@ public class UserForm {
 
 	@NotNull
 	public int age;
+	@NotNull
 	@Email
 	public String email;
 	@NotNull
 	public String name;
+	@NotNull
 	@Size(min = 8, max=15)
 	public String phone;
 	
