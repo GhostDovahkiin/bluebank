@@ -1,5 +1,7 @@
 package com.gama.projeto.bluebank.model;
 
+import com.gama.projeto.bluebank.Enum.AccountType;
+import com.gama.projeto.bluebank.Enum.HolderType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
