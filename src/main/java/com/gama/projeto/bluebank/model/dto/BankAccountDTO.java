@@ -1,8 +1,8 @@
 package com.gama.projeto.bluebank.model.dto;
 
-import com.gama.projeto.bluebank.model.AccountType;
+import com.gama.projeto.bluebank.Enum.AccountType;
 import com.gama.projeto.bluebank.model.BankAccount;
-import com.gama.projeto.bluebank.model.HolderType;
+import com.gama.projeto.bluebank.Enum.HolderType;
 import com.gama.projeto.bluebank.model.Transaction;
 import com.gama.projeto.bluebank.model.User;
 import lombok.AllArgsConstructor;
