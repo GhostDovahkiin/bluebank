@@ -2,13 +2,11 @@ package com.gama.projeto.bluebank.model.dto;
 
 import com.gama.projeto.bluebank.model.BankAccount;
 import com.gama.projeto.bluebank.model.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.domain.Page;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -18,14 +16,15 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-@Getter
 @Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(builderClassName = "Builder")
 public class UserDTO implements Serializable {
 
     @NotNull(message = "id cannot be null.")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @NotNull(message = "specificID cannot be null.")
@@ -71,4 +70,5 @@ public class UserDTO implements Serializable {
     public static Page<UserDTO> fromPage(Page<User> pages) {
         return pages.map(UserDTO::from);
     }
+
 }
