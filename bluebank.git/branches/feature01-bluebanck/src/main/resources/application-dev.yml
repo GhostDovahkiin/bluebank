@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://kesavan.db.elephantsql.com:5432/vumexewn?createDatabaseIfNotExist=true&useSSL=true
+    username: vumexewn
+    password: utdIon3LLU2sx2mIE_H6AmYZ-mMY76zT
+    platform: postgres
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    database: postgresql
