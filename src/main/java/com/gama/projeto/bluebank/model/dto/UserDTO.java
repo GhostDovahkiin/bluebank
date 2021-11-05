@@ -64,6 +64,16 @@ public class UserDTO implements Serializable {
                 .build();
     }
 
+    public static User toEntity(UserDTO userDTO){
+        return User.builder()
+                .id(userDTO.getId())
+                .specificID(UUID.randomUUID().toString())
+                .name(userDTO.getName())
+                .age(userDTO.getAge())
+                .phone(userDTO.getPhone())
+                .email(userDTO.getEmail())
+                .account(userDTO.getAccount()).build();
+    }
     public static List<UserDTO> fromAll(List<User> user) {
         return user.stream().map(UserDTO::from).collect(Collectors.toList());
     }
