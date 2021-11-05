@@ -1,7 +1,7 @@
 package com.gama.projeto.bluebank.model;
 
-import com.gama.projeto.bluebank.Enum.AccountType;
-import com.gama.projeto.bluebank.Enum.HolderType;
+import com.gama.projeto.bluebank.model.Enum.AccountType;
+import com.gama.projeto.bluebank.model.Enum.HolderType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -39,9 +39,6 @@ public class BankAccount {
     private Integer number;
 
     private Integer agency;
-
-    @OneToOne
-    private User holder;
 
     @Enumerated(EnumType.STRING)
     private AccountType type;

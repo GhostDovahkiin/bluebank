@@ -1,8 +1,7 @@
 package com.gama.projeto.bluebank.repositories;
 
+import com.gama.projeto.bluebank.model.Transaction;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import br.com.gamastore.bluebank.model.Transaction;
 
 public interface TransactionRepository extends JpaRepository<Transaction, Long>{
 
