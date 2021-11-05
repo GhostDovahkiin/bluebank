@@ -1,11 +1,7 @@
 package com.gama.projeto.bluebank.model;
 
 import com.gama.projeto.bluebank.model.dto.UserDTO;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,6 +17,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Getter
 @Setter
+@Data
 @Builder(builderClassName = "Builder")
 public class User implements Serializable {
     @Id
