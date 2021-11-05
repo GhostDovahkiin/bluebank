@@ -1,4 +1,4 @@
-package com.gama.projeto.bluebank.Enum;
+package com.gama.projeto.bluebank.model.Enum;
 
 import lombok.Getter;
 
