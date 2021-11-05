@@ -41,7 +41,6 @@ public class UserService {
     }
 
     public UserDTO update(UserDTO userDTO, long id) {
-
         Optional<User> result = userRepository.findById(id);
 
         if(!result.isPresent()) return null;
