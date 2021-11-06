@@ -1,5 +1,6 @@
 package com.gama.projeto.bluebank.model;
 
+import com.gama.projeto.bluebank.forms.UserForm;
 import com.gama.projeto.bluebank.model.dto.UserDTO;
 import lombok.*;
 
@@ -37,6 +38,15 @@ public class User implements Serializable {
 
     @OneToOne
     private BankAccount account;
+
+    public User(String specificID, String name, int age, String phone, String email, BankAccount account) {
+        this.specificID = specificID;
+        this.name = name;
+        this.age = age;
+        this.phone = phone;
+        this.email = email;
+        this.account = account;
+    }
 
     public static User to(UserDTO dto) {
         return User
