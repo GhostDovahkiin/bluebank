@@ -32,7 +32,6 @@ public class UserService {
 
         return UserDTO.fromPage(userRepository.findAll(_p));
 
-        //return repository.findAll().stream().map(CarFactory::Create).collect(Collectors.toList());
     }
 
     // localizar por ID
