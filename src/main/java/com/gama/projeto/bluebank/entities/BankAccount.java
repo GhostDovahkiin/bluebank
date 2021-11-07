@@ -1,7 +1,8 @@
-package com.gama.projeto.bluebank.model;
+package com.gama.projeto.bluebank.entities;
 
-import com.gama.projeto.bluebank.model.Enum.AccountType;
-import com.gama.projeto.bluebank.model.Enum.HolderType;
+import com.gama.projeto.bluebank.entities.enums.AccountType;
+import com.gama.projeto.bluebank.entities.enums.HolderType;
+import com.gama.projeto.bluebank.entities.dtos.BankAccountDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -17,8 +19,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.PositiveOrZero;
 import java.util.Set;
 
 @Entity
@@ -33,9 +35,7 @@ public class BankAccount {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String specificID;
-
+    @Column(unique=true)
     private Integer number;
 
     private Integer agency;
@@ -46,8 +46,20 @@ public class BankAccount {
     @Enumerated(EnumType.STRING)
     private HolderType holderType;
 
-    private double amount = 0;
+    @PositiveOrZero
+    private double amount;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Transaction> transactions;
+
+    public static BankAccount to(BankAccountDTO dto) {
+        return BankAccount
+                .builder()
+                .number(dto.getNumber())
+                .agency(dto.getAgency())
+                .type(dto.getType())
+                .holderType(dto.getHolderType())
+                .amount(dto.getAmount())
+                .build();
+    }
 }

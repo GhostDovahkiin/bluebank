@@ -1,8 +1,16 @@
 spring:
+  application:
+    name: bluebank
   profiles:
     active: dev
   jpa:
     show-sql: true
-    database: postgresql
-    hibernate:
-      ddl-auto: create
+#  h2:
+#    console:
+#      enabled: true
+#      path: /h2-console
+server:
+  port: 8080
+  error:
+    include-stacktrace: never
+

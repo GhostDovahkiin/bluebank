@@ -1,8 +1,10 @@
-package com.gama.projeto.bluebank.model;
+package com.gama.projeto.bluebank.entities;
 
-import com.gama.projeto.bluebank.model.dto.UserDTO;
+import com.gama.projeto.bluebank.entities.dtos.UserDTO;
 import lombok.*;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,25 +19,23 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Getter
 @Setter
-@Data
 @Builder(builderClassName = "Builder")
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String specificID;
-
     private String name;
 
     private int age;
 
+    @Column(unique=true)
     private String phone;
 
+    @Column(unique=true)
     private String email;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.PERSIST)
     private BankAccount account;
 
     public static User to(UserDTO dto) {
