@@ -1,7 +1,8 @@
-package com.gama.projeto.bluebank.model.dto;
+package com.gama.projeto.bluebank.entities.dtos;
 
-import com.gama.projeto.bluebank.model.Transaction;
-import com.gama.projeto.bluebank.model.User;
+import com.gama.projeto.bluebank.entities.Transaction;
+import com.gama.projeto.bluebank.entities.User;
+import com.gama.projeto.bluebank.entities.enums.TransactionType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,10 +11,10 @@ import lombok.Setter;
 import org.springframework.data.domain.Page;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Getter
@@ -27,9 +28,6 @@ public class TransactionDTO implements Serializable {
     private long id;
 
     @NotNull(message = "specificId cannot be null.")
-    private String specificID;
-
-    @NotNull(message = "specificId cannot be null.")
     private User sender;
 
     @NotNull(message = "specificId cannot be null.")
@@ -39,15 +37,21 @@ public class TransactionDTO implements Serializable {
     @FutureOrPresent
     private LocalDateTime date;
 
+    @Positive
+    private double amount;
+
+    @NotNull
+    private TransactionType type;
+
     public static TransactionDTO from(Transaction entity) {
         return TransactionDTO
                 .builder()
                 .id(entity.getId())
-                .specificID(UUID.randomUUID().toString())
-                .sender(entity.getSender())
                 .sender(entity.getSender())
                 .receiver(entity.getReceiver())
-                .date(LocalDateTime.now())
+                .date(entity.getDate())
+                .amount(entity.getAmount())
+                .type(entity.getType())
                 .build();
     }
 

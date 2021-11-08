@@ -12,10 +12,11 @@ tmp/
 *~.nib
 local.properties
 .settings/
-.loadpath
+.loadpathb
 .recommenders
 *.iml
 .idea/
+database.trace.db
 
 # External tool builders
 .externalToolBuilders/
