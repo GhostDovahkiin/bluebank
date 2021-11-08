@@ -1,0 +1,669 @@
+openapi: 3.0.3
+info:
+  title: BlueBank
+  description: O banco fictício BlueBank está construindo uma nova plataforma e precisa de uma API para gerenciar as transações. Utilize suas novas habilidades com Spring Boot e Spring Data. O sistema deve permitir cadastro de novos clientes, incluindo dados pessoais e dados para contato.
+  termsOfService: https://swagger.io/terms/
+  contact:
+    email: phenrique615@gmail.com
+  license:
+    name: MIT License
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+  #- url: https://bluebank.herokuapp.com
+  #  description: Heroku Server
+  - url: http://localhost:8080
+    description: Local Server
+tags:
+  - name: transaction-controller
+    description: Everything about available users
+  - name: user-controller
+    description: Everything about all transactions made
+paths:
+  /api/v1/transactions:
+    get:
+      tags:
+        - transaction-controller
+      summary: listPage
+      operationId: listPageUsingGET
+      parameters:
+        - name: offset
+          in: query
+          required: false
+          style: form
+          schema:
+            type: integer
+            format: int64
+        - name: pageNumber
+          in: query
+          required: false
+          style: form
+          schema:
+            type: integer
+            format: int32
+        - name: pageSize
+          in: query
+          required: false
+          style: form
+          schema:
+            type: integer
+            format: int32
+        - name: paged
+          in: query
+          required: false
+          style: form
+          schema:
+            type: boolean
+        - name: sort.sorted
+          in: query
+          required: false
+          style: form
+          schema:
+            type: boolean
+        - name: sort.unsorted
+          in: query
+          required: false
+          style: form
+          schema:
+            type: boolean
+        - name: unpaged
+          in: query
+          required: false
+          style: form
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UserDTOPage'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    post:
+      tags:
+        - transaction-controller
+      summary: save
+      operationId: saveUsingPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransactionRequest'
+      responses:
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api/v1/transactions/all:
+    get:
+      tags:
+        - transaction-controller
+      summary: findAll
+      operationId: findAllUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TransactionDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api/v1/transactions/{id}:
+    get:
+      tags:
+        - transaction-controller
+      summary: findByID
+      operationId: findByIDUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TransactionDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    delete:
+      tags:
+        - transaction-controller
+      summary: delete
+      operationId: deleteUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /api/v1/users:
+    get:
+      tags:
+        - user-controller
+      summary: listPageUser
+      operationId: listPageUserUsingGET
+      parameters:
+        - name: offset
+          in: query
+          required: false
+          style: form
+          schema:
+            type: integer
+            format: int64
+        - name: pageNumber
+          in: query
+          required: false
+          style: form
+          schema:
+            type: integer
+            format: int32
+        - name: pageSize
+          in: query
+          required: false
+          style: form
+          schema:
+            type: integer
+            format: int32
+        - name: paged
+          in: query
+          required: false
+          style: form
+          schema:
+            type: boolean
+        - name: sort.sorted
+          in: query
+          required: false
+          style: form
+          schema:
+            type: boolean
+        - name: sort.unsorted
+          in: query
+          required: false
+          style: form
+          schema:
+            type: boolean
+        - name: unpaged
+          in: query
+          required: false
+          style: form
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UserDTOPage'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    post:
+      tags:
+        - user-controller
+      summary: save
+      operationId: saveUsingPOST_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserDTO'
+      responses:
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api/v1/users/all:
+    get:
+      tags:
+        - user-controller
+      summary: findAll
+      operationId: findAllUsingGET_1
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api/v1/users/{id}:
+    get:
+      tags:
+        - user-controller
+      summary: findByID
+      operationId: findByIDUsingGET_1
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UserDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    delete:
+      tags:
+        - user-controller
+      summary: delete
+      operationId: deleteUsingDELETE_1
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+components:
+  schemas:
+    BankAccount:
+      title: BankAccount
+      type: object
+      properties:
+        agency:
+          type: integer
+          format: int32
+        amount:
+          type: number
+          format: double
+        holderType:
+          type: string
+          enum:
+            - ENTERPRISE
+            - NGO
+            - PERSON
+        id:
+          type: integer
+          format: int64
+        number:
+          type: integer
+          format: int32
+        transactions:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+        type:
+          type: string
+          enum:
+            - CURRENT
+            - SALARY
+            - SAVING
+    ModelAndView:
+      title: ModelAndView
+      type: object
+      properties:
+        empty:
+          type: boolean
+        model:
+          type: object
+        modelMap:
+          type: object
+          additionalProperties:
+            type: object
+        reference:
+          type: boolean
+        status:
+          type: string
+          enum:
+            - ACCEPTED
+            - ALREADY_REPORTED
+            - BAD_GATEWAY
+            - BAD_REQUEST
+            - BANDWIDTH_LIMIT_EXCEEDED
+            - CHECKPOINT
+            - CONFLICT
+            - CONTINUE
+            - CREATED
+            - DESTINATION_LOCKED
+            - EXPECTATION_FAILED
+            - FAILED_DEPENDENCY
+            - FORBIDDEN
+            - FOUND
+            - GATEWAY_TIMEOUT
+            - GONE
+            - HTTP_VERSION_NOT_SUPPORTED
+            - IM_USED
+            - INSUFFICIENT_SPACE_ON_RESOURCE
+            - INSUFFICIENT_STORAGE
+            - INTERNAL_SERVER_ERROR
+            - I_AM_A_TEAPOT
+            - LENGTH_REQUIRED
+            - LOCKED
+            - LOOP_DETECTED
+            - METHOD_FAILURE
+            - METHOD_NOT_ALLOWED
+            - MOVED_PERMANENTLY
+            - MOVED_TEMPORARILY
+            - MULTIPLE_CHOICES
+            - MULTI_STATUS
+            - NETWORK_AUTHENTICATION_REQUIRED
+            - NON_AUTHORITATIVE_INFORMATION
+            - NOT_ACCEPTABLE
+            - NOT_EXTENDED
+            - NOT_FOUND
+            - NOT_IMPLEMENTED
+            - NOT_MODIFIED
+            - NO_CONTENT
+            - OK
+            - PARTIAL_CONTENT
+            - PAYLOAD_TOO_LARGE
+            - PAYMENT_REQUIRED
+            - PERMANENT_REDIRECT
+            - PRECONDITION_FAILED
+            - PRECONDITION_REQUIRED
+            - PROCESSING
+            - PROXY_AUTHENTICATION_REQUIRED
+            - REQUESTED_RANGE_NOT_SATISFIABLE
+            - REQUEST_ENTITY_TOO_LARGE
+            - REQUEST_HEADER_FIELDS_TOO_LARGE
+            - REQUEST_TIMEOUT
+            - REQUEST_URI_TOO_LONG
+            - RESET_CONTENT
+            - SEE_OTHER
+            - SERVICE_UNAVAILABLE
+            - SWITCHING_PROTOCOLS
+            - TEMPORARY_REDIRECT
+            - TOO_EARLY
+            - TOO_MANY_REQUESTS
+            - UNAUTHORIZED
+            - UNAVAILABLE_FOR_LEGAL_REASONS
+            - UNPROCESSABLE_ENTITY
+            - UNSUPPORTED_MEDIA_TYPE
+            - UPGRADE_REQUIRED
+            - URI_TOO_LONG
+            - USE_PROXY
+            - VARIANT_ALSO_NEGOTIATES
+        view:
+          $ref: '#/components/schemas/View'
+        viewName:
+          type: string
+    Pageable:
+      title: Pageable
+      type: object
+      properties:
+        offset:
+          type: integer
+          format: int64
+        pageNumber:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        paged:
+          type: boolean
+        sort:
+          $ref: '#/components/schemas/Sort'
+        unpaged:
+          type: boolean
+    TransactionDTOPage:
+      title: Page«TransactionDTOPage»
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionDTO'
+        empty:
+          type: boolean
+        first:
+          type: boolean
+        last:
+          type: boolean
+        number:
+          type: integer
+          format: int32
+        numberOfElements:
+          type: integer
+          format: int32
+        pageable:
+          $ref: '#/components/schemas/Pageable'
+        size:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/Sort'
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+    UserDTOPage:
+      title: Page«UserDTO»
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserDTO'
+        empty:
+          type: boolean
+        first:
+          type: boolean
+        last:
+          type: boolean
+        number:
+          type: integer
+          format: int32
+        numberOfElements:
+          type: integer
+          format: int32
+        pageable:
+          $ref: '#/components/schemas/Pageable'
+        size:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/Sort'
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+    Sort:
+      title: Sort
+      type: object
+      properties:
+        empty:
+          type: boolean
+        sorted:
+          type: boolean
+        unsorted:
+          type: boolean
+    Transaction:
+      title: Transaction
+      type: object
+      properties:
+        amount:
+          type: number
+          format: double
+        date:
+          type: string
+          format: date-time
+        id:
+          type: integer
+          format: int64
+        receiver:
+          $ref: '#/components/schemas/User'
+        sender:
+          $ref: '#/components/schemas/User'
+        type:
+          type: string
+          enum:
+            - RECEIVE
+            - SEND
+    TransactionDTO:
+      title: TransactionDTO
+      required:
+        - date
+        - id
+        - receiver
+        - sender
+        - type
+      type: object
+      properties:
+        amount:
+          type: number
+          format: double
+        date:
+          type: string
+          format: date-time
+        id:
+          type: integer
+          format: int64
+        receiver:
+          $ref: '#/components/schemas/User'
+        sender:
+          $ref: '#/components/schemas/User'
+        type:
+          type: string
+          enum:
+            - RECEIVE
+            - SEND
+    TransactionRequest:
+      title: TransactionRequest
+      required:
+        - amount
+        - receiver
+        - sender
+      type: object
+      properties:
+        amount:
+          type: number
+          format: double
+        receiver:
+          type: integer
+          format: int64
+        sender:
+          type: integer
+          format: int64
+    User:
+      title: User
+      type: object
+      properties:
+        account:
+          $ref: '#/components/schemas/BankAccount'
+        age:
+          type: integer
+          format: int32
+        email:
+          type: string
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        phone:
+          type: string
+    UserDTO:
+      title: UserDTO
+      required:
+        - account
+        - age
+        - email
+        - id
+        - name
+        - phone
+      type: object
+      properties:
+        account:
+          $ref: '#/components/schemas/BankAccount'
+        age:
+          type: integer
+          format: int32
+        email:
+          type: string
+        id:
+          type: integer
+          format: int64
+        name:
+          maxLength: 50
+          minLength: 2
+          type: string
+        phone:
+          maxLength: 15
+          minLength: 8
+          type: string
+    View:
+      title: View
+      type: object
+      properties:
+        contentType:
+          type: string
