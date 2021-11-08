@@ -44,7 +44,7 @@ public class UserDTO implements Serializable {
     @Email(message = "This email is not valid, please enter a valid email.")
     private String email;
 
-    @NotNull(message = "account cannot be null, the values are MALE, FEMALE or UNDEFINED")
+    @NotNull(message = "account cannot be null")
     private BankAccount account;
 
     public static UserDTO from(User entity) {
